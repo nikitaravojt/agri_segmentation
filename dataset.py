@@ -27,8 +27,8 @@ class CropWeedDataset(Dataset):
         image = Image.open(os.path.join(self.image_dir, self.images[idx])).convert("RGB")
         label = Image.open(os.path.join(self.label_dir, self.labels[idx])).convert("RGB")
         
-        image = image.resize((1280, 960), Image.BILINEAR)
-        label = label.resize((1280, 960), Image.NEAREST)
+        image = image.resize((640, 480), Image.BILINEAR)
+        label = label.resize((640, 480), Image.NEAREST)
         
         image = torch.tensor(np.array(image), dtype=torch.float32).permute(2, 0, 1) / 255.0
         label = torch.tensor(self.mask_to_label(label), dtype=torch.long)
