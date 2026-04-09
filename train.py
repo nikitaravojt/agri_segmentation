@@ -61,10 +61,20 @@ if __name__ == "__main__":
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
+    best_val_loss = float('inf')
+
     for epoch in range(20):
         train_loss = train(model, train_loader, optimizer, criterion, device)
         val_loss, iou = evaluate(model, test_loader, criterion, device)
         print(f"Epoch {epoch+1:02d} | Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | IoU bg: {iou[0]:.3f} crop: {iou[1]:.3f} weed: {iou[2]:.3f}")
 
+        if val_loss < best_val_loss: # checkpointing
+            best_val_loss = val_loss
+            best_epoch = epoch + 1
+            torch.save(model.state_dict(), "segmentnet_base.pth")
+
+    print(f"\nTraining complete. Best model at epoch {best_epoch} with val loss {best_val_loss:.4f}. Saved to segmentnet_base.pth")
     torch.save(model.state_dict(), "segmentnet_base.pth")
     print("Model saved.")
+
+
