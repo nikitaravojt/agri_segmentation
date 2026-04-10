@@ -5,15 +5,17 @@ from unet import UNet
 from dataset import CropWeedDataset
 from skimage.segmentation import find_boundaries
 from scipy.ndimage import distance_transform_edt
+from sklearn.model_selection import KFold
 
 # Configuration for ablation study
 config = {
+    "epochs": 30,
     "weighted_ce": False,
     "augmentation": False,
     "dropout": False,
-    "lr_scheduler": False,
+    "lr_scheduler": True,
     "pretrained_encoder": False,
-    "kfold": False,
+    "kfold": True,
 }
 
 def train(model, loader, optimizer, criterion, device):
@@ -100,37 +102,64 @@ def evaluate(model, loader, criterion, device, num_classes=3):
     bf_scores = bf_scores / num_batches
     return total_loss / len(loader), iou, accuracy, bf_scores
 
-if __name__ == "__main__":
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"Using device: {device}")
-
-    train_dataset = CropWeedDataset("data/images", "data/segmentation", indices=range(40))
-    test_dataset = CropWeedDataset("data/images", "data/segmentation", indices=range(40, 50))
-
+def run_experiment(train_idx, test_idx, device, criterion, fold=None):
+    train_dataset = CropWeedDataset("data/images", "data/segmentation", indices=train_idx)
+    test_dataset = CropWeedDataset("data/images", "data/segmentation", indices=test_idx)
+    
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=4, shuffle=False)
-
+    
     model = UNet(num_classes=3).to(device)
-    criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
+    if config["lr_scheduler"]:
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+            optimizer, T_max=config["epochs"], eta_min=1e-6
+        ) 
+    
     best_val_loss = float('inf')
-
-    for epoch in range(20):
+    best_metrics = None
+    best_epoch = 0
+    
+    for epoch in range(config["epochs"]):
         train_loss = train(model, train_loader, optimizer, criterion, device)
         val_loss, iou, accuracy, bf_scores = evaluate(model, test_loader, criterion, device)
-        print(f"Epoch {epoch+1:02d} | Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | "
-            f"IoU bg: {iou[0]:.3f} crop: {iou[1]:.3f} weed: {iou[2]:.3f} | "
-            f"Acc bg: {accuracy[0]:.3f} crop: {accuracy[1]:.3f} weed: {accuracy[2]:.3f} | "
-            f"BF bg: {bf_scores[0]:.3f} crop: {bf_scores[1]:.3f} weed: {bf_scores[2]:.3f}")
+        if config["lr_scheduler"]:
+            scheduler.step()
 
-        if val_loss < best_val_loss: # checkpointing
+        current_lr = optimizer.param_groups[0]['lr']
+        print(f"  Epoch {epoch+1:02d} | Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | "
+              f"IoU crop: {iou[1]:.3f} weed: {iou[2]:.3f} | LR: {current_lr:.6f}")
+        
+        if val_loss < best_val_loss:
             best_val_loss = val_loss
             best_epoch = epoch + 1
-            torch.save(model.state_dict(), "segmentnet_imp.pth")
+            best_metrics = (iou.clone(), accuracy.clone(), bf_scores.clone())
+            save_name = f"segmentnet_imp_fold{fold}.pth" if fold else "segmentnet_imp.pth"
+            torch.save(model.state_dict(), save_name)
+    
+    print(f"  Best epoch {best_epoch} | IoU crop: {best_metrics[0][1]:.3f} weed: {best_metrics[0][2]:.3f}")
+    return best_metrics
 
-    print(f"\nTraining complete. Best model at epoch {best_epoch} with val loss {best_val_loss:.4f}. Saved to segmentnet_imp.pth")
-    torch.save(model.state_dict(), "segmentnet_imp.pth")
-    print("Model saved.")
+if __name__ == "__main__":
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    criterion = nn.CrossEntropyLoss()
+
+    if config["kfold"]:
+        kf = KFold(n_splits=5, shuffle=True, random_state=42)
+        fold_metrics = []
+        for fold, (train_idx, test_idx) in enumerate(kf.split(range(50))):
+            print(f"\nFold {fold+1}/5")
+            fold_metrics.append(run_experiment(train_idx, test_idx, device, criterion, fold=fold+1))
+        
+        iou_avg = torch.stack([m[0] for m in fold_metrics]).mean(dim=0)
+        acc_avg = torch.stack([m[1] for m in fold_metrics]).mean(dim=0)
+        bf_avg = torch.stack([m[2] for m in fold_metrics]).mean(dim=0)
+        print(f"\nK-Fold Results:")
+        print(f"IoU      | bg: {iou_avg[0]:.3f} crop: {iou_avg[1]:.3f} weed: {iou_avg[2]:.3f}")
+        print(f"Accuracy | bg: {acc_avg[0]:.3f} crop: {acc_avg[1]:.3f} weed: {acc_avg[2]:.3f}")
+        print(f"BFScore  | bg: {bf_avg[0]:.3f} crop: {bf_avg[1]:.3f} weed: {bf_avg[2]:.3f}")
+    else:
+        run_experiment(range(40), range(40, 50), device, criterion)
 
 
