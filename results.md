@@ -1,4 +1,12 @@
 
+## Result_6 13/04/26. Baseline + kfold + cosineLR + augmentations (geometric + colour jitter) + 0.4 dropout for 50 epochs
+K-Fold Results:
+IoU      | bg: 0.989 crop: 0.710 weed: 0.683
+Accuracy | bg: 0.996 crop: 0.830 weed: 0.775
+BFScore  | bg: 0.892 crop: 0.719 weed: 0.753
+Notes:
+- Dropout as extra regularisation hurts slightly. Will remove.
+
 ## Result_5 13/04/26. Baseline + kfold + cosineLR + augmentations (geometric + colour jitter) for 50 epochs
 K-Fold Results:
 IoU      | bg: 0.987 crop: 0.676 weed: 0.621

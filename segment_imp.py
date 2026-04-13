@@ -16,7 +16,7 @@ config = {
     "early_stopping_patience": 7,
     "weighted_ce": False,
     "augmentation": True,
-    "dropout": False,
+    "dropout": True,
     "lr_scheduler": True,
     "pretrained_encoder": False,
     "kfold": True,
