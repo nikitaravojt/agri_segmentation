@@ -1,4 +1,31 @@
 
+## Result_5 13/04/26. Baseline + kfold + cosineLR + augmentations (geometric + colour jitter) for 50 epochs
+K-Fold Results:
+IoU      | bg: 0.987 crop: 0.676 weed: 0.621
+Accuracy | bg: 0.996 crop: 0.813 weed: 0.704
+BFScore  | bg: 0.859 crop: 0.671 weed: 0.665
+
+Notes:
+- Actually slightly worse than R3. Maybe colour jitter degrades the image too much?
+- Let's run geometric augmentations only and see what happens.
+Geometric only:
+K-Fold Results:
+IoU      | bg: 0.989 crop: 0.721 weed: 0.695
+Accuracy | bg: 0.995 crop: 0.816 weed: 0.798
+BFScore  | bg: 0.892 crop: 0.726 weed: 0.744
+
+- Definitely better, matching and slightly beating cosineLR-only run.
+
+## Result_4 13/04/26. Baseline + kfold + cosineLR + raw weighted CE for 50 epochs
+K-Fold Results:
+IoU      | bg: 0.961 crop: 0.663 weed: 0.489
+Accuracy | bg: 0.962 crop: 0.946 weed: 0.899
+BFScore  | bg: 0.570 crop: 0.635 weed: 0.457
+
+Notes:
+- Worse output. Likely due to overly aggressive imbalance handling.
+- Will remove weighted CE for now and perhaps explore it later.
+
 ## Result_3 10/04/26. Basline + k-fold (k=5) w/ CosineAnnealingLR (init LR=1e-3) for 30 epochs
 K-Fold Results:
 IoU      | bg: 0.988 crop: 0.722 weed: 0.678

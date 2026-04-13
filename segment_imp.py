@@ -1,3 +1,6 @@
+import sys
+import os
+from datetime import datetime
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -10,9 +13,9 @@ from sklearn.model_selection import KFold
 # Configuration for ablation study
 config = {
     "epochs": 50,
-    "early_stopping_patience": 8,
-    "weighted_ce": True,
-    "augmentation": False,
+    "early_stopping_patience": 7,
+    "weighted_ce": False,
+    "augmentation": True,
     "dropout": False,
     "lr_scheduler": True,
     "pretrained_encoder": False,
@@ -104,13 +107,13 @@ def evaluate(model, loader, criterion, device, num_classes=3):
     return total_loss / len(loader), iou, accuracy, bf_scores
 
 def run_experiment(train_idx, test_idx, device, criterion, fold=None):
-    train_dataset = CropWeedDataset("data/images", "data/segmentation", indices=train_idx)
+    train_dataset = CropWeedDataset("data/images", "data/segmentation", indices=train_idx, augment=config["augmentation"])
     test_dataset = CropWeedDataset("data/images", "data/segmentation", indices=test_idx)
     
-    train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
-    test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False)
+    train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=4, shuffle=False)
     
-    model = UNet(num_classes=3).to(device)
+    model = UNet(num_classes=3, dropout=config["dropout"]).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
     if config["lr_scheduler"]:
@@ -151,6 +154,38 @@ def run_experiment(train_idx, test_idx, device, criterion, fold=None):
     return best_metrics
 
 if __name__ == "__main__":
+    # Redirect output to file
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_filename = f"results_{timestamp}.txt"
+    log_file = open(log_filename, 'w')
+    
+    class Tee:
+        def __init__(self, *files):
+            self.files = files
+            self.last_was_batch = False
+        def write(self, obj):
+            is_batch = 'Batch' in obj
+            for f in self.files:
+                if f is log_file:
+                    if is_batch:
+                        self.last_was_batch = True
+                        continue
+                    if self.last_was_batch and not obj.strip():
+                        continue  # skip blank lines immediately after batch lines
+                    self.last_was_batch = False
+                f.write(obj)
+                f.flush()
+        def flush(self):
+            for f in self.files:
+                f.flush()
+        
+    original_stdout = sys.stdout
+    sys.stdout = Tee(original_stdout, log_file)
+    
+    # log config
+    print(f"Run timestamp: {timestamp}")
+    print(f"Config: {config}\n")
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if config["weighted_ce"]:
         class_weights = torch.tensor([0.035, 1.855, 1.110], dtype=torch.float32).to(device) # handling class imbalance
@@ -174,5 +209,7 @@ if __name__ == "__main__":
         print(f"BFScore  | bg: {bf_avg[0]:.3f} crop: {bf_avg[1]:.3f} weed: {bf_avg[2]:.3f}")
     else:
         run_experiment(range(40), range(40, 50), device, criterion)
+
+    log_file.close()
 
 

@@ -32,12 +32,16 @@ class Encoder(nn.Module):
         return out, s1, s2, s3
     
 class Bottleneck(nn.Module):
-    def __init__(self):
+    def __init__(self, dropout=False):
         super().__init__()
         self.block = DoubleConv(128, 256)
+        self.dropout = nn.Dropout2d(0.4) if dropout else None
 
     def forward(self, x):
-        return self.block(x)
+        x = self.block(x)
+        if self.dropout:
+            x = self.dropout(x)
+        return x
     
 class Decoder(nn.Module):
     def __init__(self):
@@ -62,10 +66,10 @@ class Decoder(nn.Module):
         return x
     
 class UNet(nn.Module):
-    def __init__(self, num_classes=3):
+    def __init__(self, num_classes=3, dropout=False):
         super().__init__()
         self.encoder = Encoder()
-        self.bottleneck = Bottleneck()
+        self.bottleneck = Bottleneck(dropout=dropout)
         self.decoder = Decoder()
         self.output = nn.Conv2d(32, num_classes, kernel_size=1)
 
