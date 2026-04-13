@@ -9,13 +9,14 @@ from sklearn.model_selection import KFold
 
 # Configuration for ablation study
 config = {
-    "epochs": 30,
-    "weighted_ce": False,
+    "epochs": 50,
+    "early_stopping_patience": 8,
+    "weighted_ce": True,
     "augmentation": False,
     "dropout": False,
     "lr_scheduler": True,
     "pretrained_encoder": False,
-    "kfold": True,
+    "kfold": False,
 }
 
 def train(model, loader, optimizer, criterion, device):
@@ -120,6 +121,8 @@ def run_experiment(train_idx, test_idx, device, criterion, fold=None):
     best_val_loss = float('inf')
     best_metrics = None
     best_epoch = 0
+    patience = config["early_stopping_patience"]
+    epochs_no_improve = 0
     
     for epoch in range(config["epochs"]):
         train_loss = train(model, train_loader, optimizer, criterion, device)
@@ -129,7 +132,7 @@ def run_experiment(train_idx, test_idx, device, criterion, fold=None):
 
         current_lr = optimizer.param_groups[0]['lr']
         print(f"  Epoch {epoch+1:02d} | Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | "
-              f"IoU crop: {iou[1]:.3f} weed: {iou[2]:.3f} | LR: {current_lr:.6f}")
+            f"IoU bg: {iou[0]:.3f} crop: {iou[1]:.3f} weed: {iou[2]:.3f} | LR: {current_lr:.6f}")
         
         if val_loss < best_val_loss:
             best_val_loss = val_loss
@@ -137,13 +140,23 @@ def run_experiment(train_idx, test_idx, device, criterion, fold=None):
             best_metrics = (iou.clone(), accuracy.clone(), bf_scores.clone())
             save_name = f"segmentnet_imp_fold{fold}.pth" if fold else "segmentnet_imp.pth"
             torch.save(model.state_dict(), save_name)
+            epochs_no_improve = 0
+        else:
+            epochs_no_improve += 1
+            if epochs_no_improve >= patience:
+                print(f"  Early stopping at epoch {epoch+1}")
+                break
     
     print(f"  Best epoch {best_epoch} | IoU crop: {best_metrics[0][1]:.3f} weed: {best_metrics[0][2]:.3f}")
     return best_metrics
 
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    criterion = nn.CrossEntropyLoss()
+    if config["weighted_ce"]:
+        class_weights = torch.tensor([0.035, 1.855, 1.110], dtype=torch.float32).to(device) # handling class imbalance
+        criterion = nn.CrossEntropyLoss(weight=class_weights)
+    else:
+        criterion = nn.CrossEntropyLoss()
 
     if config["kfold"]:
         kf = KFold(n_splits=5, shuffle=True, random_state=42)
