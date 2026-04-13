@@ -16,7 +16,7 @@ config = {
     "dropout": False,
     "lr_scheduler": True,
     "pretrained_encoder": False,
-    "kfold": False,
+    "kfold": True,
 }
 
 def train(model, loader, optimizer, criterion, device):
@@ -33,7 +33,7 @@ def train(model, loader, optimizer, criterion, device):
         optimizer.step()
         
         total_loss += loss.item()
-        print(f"  Batch {batch_idx+1}/{len(loader)} | Loss: {loss.item():.4f}", end="\r")
+        print(f"  Batch {batch_idx+1}/{len(loader)} | Loss: {loss.item():.4f}", end="\r", flush=True)
     return total_loss / len(loader)
 
 def boundary_f1(pred, label, num_classes, tolerance=2):
@@ -107,8 +107,8 @@ def run_experiment(train_idx, test_idx, device, criterion, fold=None):
     train_dataset = CropWeedDataset("data/images", "data/segmentation", indices=train_idx)
     test_dataset = CropWeedDataset("data/images", "data/segmentation", indices=test_idx)
     
-    train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
-    test_loader = DataLoader(test_dataset, batch_size=4, shuffle=False)
+    train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False)
     
     model = UNet(num_classes=3).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
