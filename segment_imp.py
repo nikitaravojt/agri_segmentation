@@ -16,9 +16,9 @@ config = {
     "early_stopping_patience": 7,
     "weighted_ce": False,
     "augmentation": True,
-    "dropout": True,
+    "dropout": False,
     "lr_scheduler": True,
-    "pretrained_encoder": False,
+    "pretrained_encoder": True,
     "kfold": True,
 }
 
@@ -113,12 +113,21 @@ def run_experiment(train_idx, test_idx, device, criterion, fold=None):
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=4, shuffle=False)
     
-    model = UNet(num_classes=3, dropout=config["dropout"]).to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+
+    if config["pretrained_encoder"]:
+        from pretrained_unet import UNetPretrained
+        model = UNetPretrained(num_classes=3, dropout=config["dropout"]).to(device)
+        print("Selected model: UNet with pretrained ResNet18 encoder")
+    else:
+        from unet import UNet
+        model = UNet(num_classes=3, dropout=config["dropout"]).to(device)
+        print("Selected model: UNet with custom 3-level encoder")
+
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 
     if config["lr_scheduler"]:
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-            optimizer, T_max=config["epochs"], eta_min=1e-6
+            optimizer, T_max=config["epochs"], eta_min=1e-7
         ) 
     
     best_val_loss = float('inf')
