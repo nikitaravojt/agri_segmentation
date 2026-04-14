@@ -20,6 +20,10 @@ config = {
     "lr_scheduler": True,
     "pretrained_encoder": True,
     "kfold": True,
+    "lr": 5e-4,
+    "eta_min": 5e-7,
+    "weight_decay": 1e-4,
+    "warmup_epochs": 5,
 }
 
 def train(model, loader, optimizer, criterion, device):
@@ -113,7 +117,6 @@ def run_experiment(train_idx, test_idx, device, criterion, fold=None):
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=4, shuffle=False)
     
-
     if config["pretrained_encoder"]:
         from pretrained_unet import UNetPretrained
         model = UNetPretrained(num_classes=3, dropout=config["dropout"]).to(device)
@@ -123,23 +126,39 @@ def run_experiment(train_idx, test_idx, device, criterion, fold=None):
         model = UNet(num_classes=3, dropout=config["dropout"]).to(device)
         print("Selected model: UNet with custom 3-level encoder")
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=config["lr"], weight_decay=config["weight_decay"])
 
     if config["lr_scheduler"]:
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-            optimizer, T_max=config["epochs"], eta_min=1e-7
+            optimizer, T_max=config["epochs"] - config["warmup_epochs"], eta_min=config["eta_min"]
         ) 
     
-    best_val_loss = float('inf')
+    best_val_loss = float('inf')    
     best_metrics = None
     best_epoch = 0
     patience = config["early_stopping_patience"]
     epochs_no_improve = 0
+
+    # Freeze encoder during warmup
+    for param in model.encoder.parameters():
+        param.requires_grad = False
     
     for epoch in range(config["epochs"]):
+        # Unfreeze encoder after warmup
+        if epoch == config["warmup_epochs"]:
+            for param in model.encoder.parameters():
+                param.requires_grad = True
+        # warmup
+        if epoch < config["warmup_epochs"]:
+            lr = config["lr"] * (epoch + 1) / config["warmup_epochs"]
+            for param_group in optimizer.param_groups:
+                param_group['lr'] = lr
+        
         train_loss = train(model, train_loader, optimizer, criterion, device)
         val_loss, iou, accuracy, bf_scores = evaluate(model, test_loader, criterion, device)
-        if config["lr_scheduler"]:
+        
+        # Turn on cosineLR after warmup completes
+        if config["lr_scheduler"] and epoch >= config["warmup_epochs"]:
             scheduler.step()
 
         current_lr = optimizer.param_groups[0]['lr']

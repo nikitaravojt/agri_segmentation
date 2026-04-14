@@ -1,4 +1,26 @@
 
+## Result_7 14/04/26. Pretrained Unet (ResNet18 weights) + k=5 + cosineLR (init 1e-4, etamin 1e-7) + aug for 50 epochs
+K-Fold Results:
+IoU      | bg: 0.986 crop: 0.723 weed: 0.645
+Accuracy | bg: 0.992 crop: 0.834 weed: 0.791
+BFScore  | bg: 0.792 crop: 0.711 weed: 0.558
+Notes:
+- Looking at raw data there is underfitting. Not enough room to learn, val loss was still dropping at later epochs.
+- Next run same setup but init LR=5e-4 and eta_min=5e-7.
+K-Fold Results:
+IoU      | bg: 0.989 crop: 0.801 weed: 0.699
+Accuracy | bg: 0.996 crop: 0.885 weed: 0.783
+BFScore  | bg: 0.875 crop: 0.768 weed: 0.750
+- Best results so far, though there is still some instability. 
+- Let's try with AdamW and creating a 5-epoch warmup period where LR gradually raises to init LR:
+K-Fold Results:
+IoU      | bg: 0.988 crop: 0.797 weed: 0.696
+Accuracy | bg: 0.996 crop: 0.896 weed: 0.768
+BFScore  | bg: 0.851 crop: 0.812 weed: 0.720
+- Marginally worse, but now it seems to be underfitting more?
+- Attempting same run but freezing the encoder entirely during the warmup, and setting weight_decay=1e-4 instead of 1e-2.
+- Hopefully this addresses some of the potential over-regularisation.
+
 ## Result_6 13/04/26. Baseline + kfold + cosineLR + augmentations (geometric + colour jitter) + 0.4 dropout for 50 epochs
 K-Fold Results:
 IoU      | bg: 0.989 crop: 0.710 weed: 0.683

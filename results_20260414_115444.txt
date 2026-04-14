@@ -1,0 +1,279 @@
+Run timestamp: 20260414_115444
+Config: {'epochs': 50, 'early_stopping_patience': 7, 'weighted_ce': False, 'augmentation': True, 'dropout': False, 'lr_scheduler': True, 'pretrained_encoder': True, 'kfold': True}
+
+
+Fold 1/5
+Downloading: "https://download.pytorch.org/models/resnet18-f37072fd.pth" to /root/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth
+Selected model: UNet with pretrained ResNet18 encoder
+  Epoch 01 | Train Loss: 1.1902 | Val Loss: 1.1558 | IoU bg: 0.000 crop: 0.013 weed: 0.000 | LR: 0.000100
+  Epoch 02 | Train Loss: 1.0191 | Val Loss: 1.0863 | IoU bg: 0.000 crop: 0.013 weed: 0.000 | LR: 0.000100
+  Epoch 03 | Train Loss: 0.8548 | Val Loss: 1.0119 | IoU bg: 0.127 crop: 0.015 weed: 0.016 | LR: 0.000099
+  Epoch 04 | Train Loss: 0.7361 | Val Loss: 0.8949 | IoU bg: 0.882 crop: 0.070 weed: 0.231 | LR: 0.000098
+  Epoch 05 | Train Loss: 0.6638 | Val Loss: 0.7438 | IoU bg: 0.948 crop: 0.137 weed: 0.237 | LR: 0.000098
+  Epoch 06 | Train Loss: 0.6164 | Val Loss: 0.5934 | IoU bg: 0.982 crop: 0.248 weed: 0.256 | LR: 0.000096
+  Epoch 07 | Train Loss: 0.5807 | Val Loss: 0.5310 | IoU bg: 0.985 crop: 0.313 weed: 0.494 | LR: 0.000095
+  Epoch 08 | Train Loss: 0.5597 | Val Loss: 0.5006 | IoU bg: 0.986 crop: 0.303 weed: 0.352 | LR: 0.000094
+  Epoch 09 | Train Loss: 0.5331 | Val Loss: 0.4629 | IoU bg: 0.989 crop: 0.293 weed: 0.346 | LR: 0.000092
+  Epoch 10 | Train Loss: 0.5136 | Val Loss: 0.4528 | IoU bg: 0.988 crop: 0.347 weed: 0.386 | LR: 0.000090
+  Epoch 11 | Train Loss: 0.4926 | Val Loss: 0.4578 | IoU bg: 0.988 crop: 0.393 weed: 0.452 | LR: 0.000089
+  Epoch 12 | Train Loss: 0.4784 | Val Loss: 0.4472 | IoU bg: 0.989 crop: 0.441 weed: 0.509 | LR: 0.000086
+  Epoch 13 | Train Loss: 0.4627 | Val Loss: 0.4179 | IoU bg: 0.989 crop: 0.595 weed: 0.651 | LR: 0.000084
+  Epoch 14 | Train Loss: 0.4473 | Val Loss: 0.4195 | IoU bg: 0.990 crop: 0.623 weed: 0.663 | LR: 0.000082
+  Epoch 15 | Train Loss: 0.4344 | Val Loss: 0.3941 | IoU bg: 0.989 crop: 0.639 weed: 0.662 | LR: 0.000079
+  Epoch 16 | Train Loss: 0.4201 | Val Loss: 0.3825 | IoU bg: 0.991 crop: 0.658 weed: 0.683 | LR: 0.000077
+  Epoch 17 | Train Loss: 0.4082 | Val Loss: 0.3797 | IoU bg: 0.989 crop: 0.655 weed: 0.673 | LR: 0.000074
+  Epoch 18 | Train Loss: 0.3965 | Val Loss: 0.3638 | IoU bg: 0.990 crop: 0.752 weed: 0.723 | LR: 0.000071
+  Epoch 19 | Train Loss: 0.3853 | Val Loss: 0.3702 | IoU bg: 0.990 crop: 0.737 weed: 0.722 | LR: 0.000068
+  Epoch 20 | Train Loss: 0.3792 | Val Loss: 0.3515 | IoU bg: 0.989 crop: 0.724 weed: 0.713 | LR: 0.000065
+  Epoch 21 | Train Loss: 0.3682 | Val Loss: 0.3403 | IoU bg: 0.990 crop: 0.734 weed: 0.704 | LR: 0.000062
+  Epoch 22 | Train Loss: 0.3624 | Val Loss: 0.3418 | IoU bg: 0.990 crop: 0.711 weed: 0.704 | LR: 0.000059
+  Epoch 23 | Train Loss: 0.3541 | Val Loss: 0.3405 | IoU bg: 0.989 crop: 0.729 weed: 0.715 | LR: 0.000056
+  Epoch 24 | Train Loss: 0.3468 | Val Loss: 0.3328 | IoU bg: 0.991 crop: 0.753 weed: 0.725 | LR: 0.000053
+  Epoch 25 | Train Loss: 0.3407 | Val Loss: 0.3274 | IoU bg: 0.990 crop: 0.737 weed: 0.718 | LR: 0.000050
+  Epoch 26 | Train Loss: 0.3365 | Val Loss: 0.3216 | IoU bg: 0.991 crop: 0.712 weed: 0.711 | LR: 0.000047
+  Epoch 27 | Train Loss: 0.3313 | Val Loss: 0.3170 | IoU bg: 0.990 crop: 0.758 weed: 0.729 | LR: 0.000044
+  Epoch 28 | Train Loss: 0.3261 | Val Loss: 0.3119 | IoU bg: 0.990 crop: 0.735 weed: 0.715 | LR: 0.000041
+  Epoch 29 | Train Loss: 0.3195 | Val Loss: 0.3105 | IoU bg: 0.990 crop: 0.762 weed: 0.728 | LR: 0.000038
+  Epoch 30 | Train Loss: 0.3163 | Val Loss: 0.3038 | IoU bg: 0.991 crop: 0.717 weed: 0.714 | LR: 0.000035
+  Epoch 31 | Train Loss: 0.3111 | Val Loss: 0.3034 | IoU bg: 0.991 crop: 0.800 weed: 0.750 | LR: 0.000032
+  Epoch 32 | Train Loss: 0.3081 | Val Loss: 0.2996 | IoU bg: 0.991 crop: 0.788 weed: 0.736 | LR: 0.000029
+  Epoch 33 | Train Loss: 0.3055 | Val Loss: 0.2953 | IoU bg: 0.990 crop: 0.790 weed: 0.743 | LR: 0.000026
+  Epoch 34 | Train Loss: 0.3018 | Val Loss: 0.2950 | IoU bg: 0.991 crop: 0.792 weed: 0.742 | LR: 0.000023
+  Epoch 35 | Train Loss: 0.2999 | Val Loss: 0.2940 | IoU bg: 0.991 crop: 0.787 weed: 0.740 | LR: 0.000021
+  Epoch 36 | Train Loss: 0.2993 | Val Loss: 0.2922 | IoU bg: 0.991 crop: 0.665 weed: 0.696 | LR: 0.000018
+  Epoch 37 | Train Loss: 0.2956 | Val Loss: 0.2917 | IoU bg: 0.991 crop: 0.724 weed: 0.718 | LR: 0.000016
+  Epoch 38 | Train Loss: 0.2934 | Val Loss: 0.2887 | IoU bg: 0.991 crop: 0.797 weed: 0.748 | LR: 0.000014
+  Epoch 39 | Train Loss: 0.2925 | Val Loss: 0.2880 | IoU bg: 0.991 crop: 0.808 weed: 0.753 | LR: 0.000012
+  Epoch 40 | Train Loss: 0.2910 | Val Loss: 0.2867 | IoU bg: 0.991 crop: 0.818 weed: 0.758 | LR: 0.000010
+  Epoch 41 | Train Loss: 0.2893 | Val Loss: 0.2853 | IoU bg: 0.991 crop: 0.817 weed: 0.757 | LR: 0.000008
+  Epoch 42 | Train Loss: 0.2910 | Val Loss: 0.2827 | IoU bg: 0.991 crop: 0.815 weed: 0.756 | LR: 0.000006
+  Epoch 43 | Train Loss: 0.2884 | Val Loss: 0.2836 | IoU bg: 0.991 crop: 0.812 weed: 0.755 | LR: 0.000005
+  Epoch 44 | Train Loss: 0.2881 | Val Loss: 0.2821 | IoU bg: 0.991 crop: 0.815 weed: 0.755 | LR: 0.000004
+  Epoch 45 | Train Loss: 0.2882 | Val Loss: 0.2812 | IoU bg: 0.991 crop: 0.819 weed: 0.756 | LR: 0.000003
+  Epoch 46 | Train Loss: 0.2879 | Val Loss: 0.2813 | IoU bg: 0.991 crop: 0.819 weed: 0.756 | LR: 0.000002
+  Epoch 47 | Train Loss: 0.2882 | Val Loss: 0.2817 | IoU bg: 0.991 crop: 0.821 weed: 0.757 | LR: 0.000001
+  Epoch 48 | Train Loss: 0.2869 | Val Loss: 0.2820 | IoU bg: 0.991 crop: 0.819 weed: 0.757 | LR: 0.000000
+  Epoch 49 | Train Loss: 0.2870 | Val Loss: 0.2807 | IoU bg: 0.991 crop: 0.821 weed: 0.755 | LR: 0.000000
+  Epoch 50 | Train Loss: 0.2882 | Val Loss: 0.2811 | IoU bg: 0.991 crop: 0.821 weed: 0.755 | LR: 0.000000
+  Best epoch 49 | IoU crop: 0.821 weed: 0.755
+
+Fold 2/5
+Selected model: UNet with pretrained ResNet18 encoder
+  Epoch 01 | Train Loss: 1.3045 | Val Loss: 1.1213 | IoU bg: 0.000 crop: 0.022 weed: 0.000 | LR: 0.000100
+  Epoch 02 | Train Loss: 1.0141 | Val Loss: 1.0577 | IoU bg: 0.001 crop: 0.022 weed: 0.000 | LR: 0.000100
+  Epoch 03 | Train Loss: 0.8495 | Val Loss: 0.9739 | IoU bg: 0.439 crop: 0.024 weed: 0.189 | LR: 0.000099
+  Epoch 04 | Train Loss: 0.7555 | Val Loss: 0.8377 | IoU bg: 0.929 crop: 0.173 weed: 0.189 | LR: 0.000098
+  Epoch 05 | Train Loss: 0.6951 | Val Loss: 0.8271 | IoU bg: 0.967 crop: 0.238 weed: 0.314 | LR: 0.000098
+  Epoch 06 | Train Loss: 0.6567 | Val Loss: 0.7246 | IoU bg: 0.978 crop: 0.228 weed: 0.371 | LR: 0.000096
+  Epoch 07 | Train Loss: 0.6259 | Val Loss: 0.6535 | IoU bg: 0.978 crop: 0.181 weed: 0.372 | LR: 0.000095
+  Epoch 08 | Train Loss: 0.5899 | Val Loss: 0.6051 | IoU bg: 0.979 crop: 0.135 weed: 0.371 | LR: 0.000094
+  Epoch 09 | Train Loss: 0.5669 | Val Loss: 0.5724 | IoU bg: 0.981 crop: 0.162 weed: 0.369 | LR: 0.000092
+  Epoch 10 | Train Loss: 0.5539 | Val Loss: 0.5325 | IoU bg: 0.983 crop: 0.172 weed: 0.372 | LR: 0.000090
+  Epoch 11 | Train Loss: 0.5317 | Val Loss: 0.5005 | IoU bg: 0.983 crop: 0.179 weed: 0.373 | LR: 0.000089
+  Epoch 12 | Train Loss: 0.5130 | Val Loss: 0.4858 | IoU bg: 0.984 crop: 0.114 weed: 0.366 | LR: 0.000086
+  Epoch 13 | Train Loss: 0.5010 | Val Loss: 0.4800 | IoU bg: 0.983 crop: 0.159 weed: 0.371 | LR: 0.000084
+  Epoch 14 | Train Loss: 0.4881 | Val Loss: 0.4634 | IoU bg: 0.984 crop: 0.179 weed: 0.374 | LR: 0.000082
+  Epoch 15 | Train Loss: 0.4755 | Val Loss: 0.4535 | IoU bg: 0.984 crop: 0.249 weed: 0.386 | LR: 0.000079
+  Epoch 16 | Train Loss: 0.4601 | Val Loss: 0.4464 | IoU bg: 0.985 crop: 0.262 weed: 0.389 | LR: 0.000077
+  Epoch 17 | Train Loss: 0.4524 | Val Loss: 0.4341 | IoU bg: 0.985 crop: 0.245 weed: 0.393 | LR: 0.000074
+  Epoch 18 | Train Loss: 0.4399 | Val Loss: 0.5801 | IoU bg: 0.972 crop: 0.319 weed: 0.400 | LR: 0.000071
+  Epoch 19 | Train Loss: 0.4363 | Val Loss: 0.4269 | IoU bg: 0.984 crop: 0.326 weed: 0.404 | LR: 0.000068
+  Epoch 20 | Train Loss: 0.4266 | Val Loss: 0.4205 | IoU bg: 0.985 crop: 0.328 weed: 0.407 | LR: 0.000065
+  Epoch 21 | Train Loss: 0.4132 | Val Loss: 0.4067 | IoU bg: 0.985 crop: 0.305 weed: 0.407 | LR: 0.000062
+  Epoch 22 | Train Loss: 0.4048 | Val Loss: 0.3973 | IoU bg: 0.986 crop: 0.321 weed: 0.411 | LR: 0.000059
+  Epoch 23 | Train Loss: 0.3948 | Val Loss: 0.3900 | IoU bg: 0.986 crop: 0.361 weed: 0.422 | LR: 0.000056
+  Epoch 24 | Train Loss: 0.3898 | Val Loss: 0.3852 | IoU bg: 0.986 crop: 0.370 weed: 0.427 | LR: 0.000053
+  Epoch 25 | Train Loss: 0.3833 | Val Loss: 0.3788 | IoU bg: 0.986 crop: 0.390 weed: 0.427 | LR: 0.000050
+  Epoch 26 | Train Loss: 0.3777 | Val Loss: 0.3784 | IoU bg: 0.985 crop: 0.448 weed: 0.450 | LR: 0.000047
+  Epoch 27 | Train Loss: 0.3727 | Val Loss: 0.3654 | IoU bg: 0.986 crop: 0.480 weed: 0.456 | LR: 0.000044
+  Epoch 28 | Train Loss: 0.3653 | Val Loss: 0.3663 | IoU bg: 0.986 crop: 0.421 weed: 0.448 | LR: 0.000041
+  Epoch 29 | Train Loss: 0.3614 | Val Loss: 0.3585 | IoU bg: 0.987 crop: 0.497 weed: 0.460 | LR: 0.000038
+  Epoch 30 | Train Loss: 0.3555 | Val Loss: 0.3566 | IoU bg: 0.986 crop: 0.385 weed: 0.438 | LR: 0.000035
+  Epoch 31 | Train Loss: 0.3511 | Val Loss: 0.3500 | IoU bg: 0.987 crop: 0.472 weed: 0.454 | LR: 0.000032
+  Epoch 32 | Train Loss: 0.3508 | Val Loss: 0.3523 | IoU bg: 0.986 crop: 0.460 weed: 0.463 | LR: 0.000029
+  Epoch 33 | Train Loss: 0.3465 | Val Loss: 0.3454 | IoU bg: 0.987 crop: 0.562 weed: 0.490 | LR: 0.000026
+  Epoch 34 | Train Loss: 0.3435 | Val Loss: 0.3432 | IoU bg: 0.986 crop: 0.553 weed: 0.488 | LR: 0.000023
+  Epoch 35 | Train Loss: 0.3394 | Val Loss: 0.3393 | IoU bg: 0.986 crop: 0.552 weed: 0.489 | LR: 0.000021
+  Epoch 36 | Train Loss: 0.3378 | Val Loss: 0.3389 | IoU bg: 0.987 crop: 0.567 weed: 0.496 | LR: 0.000018
+  Epoch 37 | Train Loss: 0.3342 | Val Loss: 0.3370 | IoU bg: 0.986 crop: 0.583 weed: 0.499 | LR: 0.000016
+  Epoch 38 | Train Loss: 0.3314 | Val Loss: 0.3352 | IoU bg: 0.986 crop: 0.587 weed: 0.499 | LR: 0.000014
+  Epoch 39 | Train Loss: 0.3345 | Val Loss: 0.3336 | IoU bg: 0.986 crop: 0.619 weed: 0.512 | LR: 0.000012
+  Epoch 40 | Train Loss: 0.3290 | Val Loss: 0.3310 | IoU bg: 0.986 crop: 0.620 weed: 0.511 | LR: 0.000010
+  Epoch 41 | Train Loss: 0.3302 | Val Loss: 0.3311 | IoU bg: 0.986 crop: 0.627 weed: 0.511 | LR: 0.000008
+  Epoch 42 | Train Loss: 0.3287 | Val Loss: 0.3291 | IoU bg: 0.986 crop: 0.639 weed: 0.515 | LR: 0.000006
+  Epoch 43 | Train Loss: 0.3268 | Val Loss: 0.3291 | IoU bg: 0.986 crop: 0.651 weed: 0.518 | LR: 0.000005
+  Epoch 44 | Train Loss: 0.3281 | Val Loss: 0.3272 | IoU bg: 0.986 crop: 0.656 weed: 0.522 | LR: 0.000004
+  Epoch 45 | Train Loss: 0.3286 | Val Loss: 0.3303 | IoU bg: 0.986 crop: 0.641 weed: 0.522 | LR: 0.000003
+  Epoch 46 | Train Loss: 0.3251 | Val Loss: 0.3293 | IoU bg: 0.986 crop: 0.651 weed: 0.525 | LR: 0.000002
+  Epoch 47 | Train Loss: 0.3258 | Val Loss: 0.3274 | IoU bg: 0.986 crop: 0.652 weed: 0.522 | LR: 0.000001
+  Epoch 48 | Train Loss: 0.3308 | Val Loss: 0.3287 | IoU bg: 0.986 crop: 0.640 weed: 0.519 | LR: 0.000000
+  Epoch 49 | Train Loss: 0.3266 | Val Loss: 0.3269 | IoU bg: 0.986 crop: 0.644 weed: 0.520 | LR: 0.000000
+  Epoch 50 | Train Loss: 0.3263 | Val Loss: 0.3293 | IoU bg: 0.986 crop: 0.653 weed: 0.524 | LR: 0.000000
+  Best epoch 49 | IoU crop: 0.644 weed: 0.520
+
+Fold 3/5
+Selected model: UNet with pretrained ResNet18 encoder
+  Epoch 01 | Train Loss: 1.1121 | Val Loss: 1.0464 | IoU bg: 0.925 crop: 0.215 weed: 0.000 | LR: 0.000100
+  Epoch 02 | Train Loss: 0.8926 | Val Loss: 0.9710 | IoU bg: 0.972 crop: 0.271 weed: 0.066 | LR: 0.000100
+  Epoch 03 | Train Loss: 0.7299 | Val Loss: 0.8582 | IoU bg: 0.975 crop: 0.017 weed: 0.240 | LR: 0.000099
+  Epoch 04 | Train Loss: 0.6447 | Val Loss: 0.7057 | IoU bg: 0.985 crop: 0.066 weed: 0.253 | LR: 0.000098
+  Epoch 05 | Train Loss: 0.5913 | Val Loss: 0.5993 | IoU bg: 0.987 crop: 0.056 weed: 0.299 | LR: 0.000098
+  Epoch 06 | Train Loss: 0.5498 | Val Loss: 0.5684 | IoU bg: 0.986 crop: 0.016 weed: 0.309 | LR: 0.000096
+  Epoch 07 | Train Loss: 0.5236 | Val Loss: 0.5161 | IoU bg: 0.986 crop: 0.042 weed: 0.304 | LR: 0.000095
+  Epoch 08 | Train Loss: 0.4987 | Val Loss: 0.4663 | IoU bg: 0.988 crop: 0.014 weed: 0.266 | LR: 0.000094
+  Epoch 09 | Train Loss: 0.4824 | Val Loss: 0.4483 | IoU bg: 0.988 crop: 0.030 weed: 0.287 | LR: 0.000092
+  Epoch 10 | Train Loss: 0.4676 | Val Loss: 0.4464 | IoU bg: 0.987 crop: 0.045 weed: 0.303 | LR: 0.000090
+  Epoch 11 | Train Loss: 0.4488 | Val Loss: 0.4210 | IoU bg: 0.988 crop: 0.052 weed: 0.274 | LR: 0.000089
+  Epoch 12 | Train Loss: 0.4402 | Val Loss: 0.4388 | IoU bg: 0.988 crop: 0.068 weed: 0.311 | LR: 0.000086
+  Epoch 13 | Train Loss: 0.4192 | Val Loss: 0.4182 | IoU bg: 0.989 crop: 0.046 weed: 0.309 | LR: 0.000084
+  Epoch 14 | Train Loss: 0.4103 | Val Loss: 0.4034 | IoU bg: 0.989 crop: 0.045 weed: 0.298 | LR: 0.000082
+  Epoch 15 | Train Loss: 0.3992 | Val Loss: 0.4024 | IoU bg: 0.989 crop: 0.080 weed: 0.305 | LR: 0.000079
+  Epoch 16 | Train Loss: 0.3920 | Val Loss: 0.3711 | IoU bg: 0.988 crop: 0.128 weed: 0.287 | LR: 0.000077
+  Epoch 17 | Train Loss: 0.3853 | Val Loss: 0.3699 | IoU bg: 0.989 crop: 0.158 weed: 0.305 | LR: 0.000074
+  Epoch 18 | Train Loss: 0.3716 | Val Loss: 0.3605 | IoU bg: 0.988 crop: 0.118 weed: 0.305 | LR: 0.000071
+  Epoch 19 | Train Loss: 0.3594 | Val Loss: 0.3428 | IoU bg: 0.989 crop: 0.139 weed: 0.308 | LR: 0.000068
+  Epoch 20 | Train Loss: 0.3490 | Val Loss: 0.3458 | IoU bg: 0.989 crop: 0.162 weed: 0.310 | LR: 0.000065
+  Epoch 21 | Train Loss: 0.3443 | Val Loss: 0.3434 | IoU bg: 0.989 crop: 0.276 weed: 0.343 | LR: 0.000062
+  Epoch 22 | Train Loss: 0.3372 | Val Loss: 0.3213 | IoU bg: 0.989 crop: 0.329 weed: 0.356 | LR: 0.000059
+  Epoch 23 | Train Loss: 0.3287 | Val Loss: 0.3283 | IoU bg: 0.989 crop: 0.355 weed: 0.373 | LR: 0.000056
+  Epoch 24 | Train Loss: 0.3235 | Val Loss: 0.3224 | IoU bg: 0.989 crop: 0.457 weed: 0.387 | LR: 0.000053
+  Epoch 25 | Train Loss: 0.3173 | Val Loss: 0.3066 | IoU bg: 0.989 crop: 0.470 weed: 0.388 | LR: 0.000050
+  Epoch 26 | Train Loss: 0.3112 | Val Loss: 0.3103 | IoU bg: 0.989 crop: 0.419 weed: 0.386 | LR: 0.000047
+  Epoch 27 | Train Loss: 0.3085 | Val Loss: 0.3046 | IoU bg: 0.989 crop: 0.546 weed: 0.414 | LR: 0.000044
+  Epoch 28 | Train Loss: 0.2995 | Val Loss: 0.2972 | IoU bg: 0.989 crop: 0.493 weed: 0.387 | LR: 0.000041
+  Epoch 29 | Train Loss: 0.2981 | Val Loss: 0.2976 | IoU bg: 0.990 crop: 0.547 weed: 0.420 | LR: 0.000038
+  Epoch 30 | Train Loss: 0.2953 | Val Loss: 0.2915 | IoU bg: 0.990 crop: 0.604 weed: 0.436 | LR: 0.000035
+  Epoch 31 | Train Loss: 0.2907 | Val Loss: 0.2889 | IoU bg: 0.990 crop: 0.553 weed: 0.427 | LR: 0.000032
+  Epoch 32 | Train Loss: 0.2865 | Val Loss: 0.2807 | IoU bg: 0.989 crop: 0.615 weed: 0.436 | LR: 0.000029
+  Epoch 33 | Train Loss: 0.2854 | Val Loss: 0.2793 | IoU bg: 0.989 crop: 0.682 weed: 0.465 | LR: 0.000026
+  Epoch 34 | Train Loss: 0.2815 | Val Loss: 0.2811 | IoU bg: 0.989 crop: 0.682 weed: 0.478 | LR: 0.000023
+  Epoch 35 | Train Loss: 0.2796 | Val Loss: 0.2802 | IoU bg: 0.989 crop: 0.656 weed: 0.465 | LR: 0.000021
+  Epoch 36 | Train Loss: 0.2777 | Val Loss: 0.2782 | IoU bg: 0.989 crop: 0.660 weed: 0.471 | LR: 0.000018
+  Epoch 37 | Train Loss: 0.2765 | Val Loss: 0.2754 | IoU bg: 0.989 crop: 0.706 weed: 0.493 | LR: 0.000016
+  Epoch 38 | Train Loss: 0.2755 | Val Loss: 0.2765 | IoU bg: 0.989 crop: 0.666 weed: 0.477 | LR: 0.000014
+  Epoch 39 | Train Loss: 0.2714 | Val Loss: 0.2723 | IoU bg: 0.990 crop: 0.724 weed: 0.500 | LR: 0.000012
+  Epoch 40 | Train Loss: 0.2691 | Val Loss: 0.2702 | IoU bg: 0.990 crop: 0.709 weed: 0.494 | LR: 0.000010
+  Epoch 41 | Train Loss: 0.2692 | Val Loss: 0.2688 | IoU bg: 0.989 crop: 0.706 weed: 0.489 | LR: 0.000008
+  Epoch 42 | Train Loss: 0.2661 | Val Loss: 0.2691 | IoU bg: 0.990 crop: 0.675 weed: 0.478 | LR: 0.000006
+  Epoch 43 | Train Loss: 0.2672 | Val Loss: 0.2672 | IoU bg: 0.990 crop: 0.718 weed: 0.496 | LR: 0.000005
+  Epoch 44 | Train Loss: 0.2664 | Val Loss: 0.2666 | IoU bg: 0.990 crop: 0.714 weed: 0.494 | LR: 0.000004
+  Epoch 45 | Train Loss: 0.2677 | Val Loss: 0.2672 | IoU bg: 0.989 crop: 0.700 weed: 0.491 | LR: 0.000003
+  Epoch 46 | Train Loss: 0.2677 | Val Loss: 0.2663 | IoU bg: 0.990 crop: 0.724 weed: 0.501 | LR: 0.000002
+  Epoch 47 | Train Loss: 0.2669 | Val Loss: 0.2665 | IoU bg: 0.990 crop: 0.712 weed: 0.495 | LR: 0.000001
+  Epoch 48 | Train Loss: 0.2665 | Val Loss: 0.2670 | IoU bg: 0.990 crop: 0.705 weed: 0.493 | LR: 0.000000
+  Epoch 49 | Train Loss: 0.2678 | Val Loss: 0.2679 | IoU bg: 0.990 crop: 0.696 weed: 0.491 | LR: 0.000000
+  Epoch 50 | Train Loss: 0.2665 | Val Loss: 0.2670 | IoU bg: 0.990 crop: 0.723 weed: 0.505 | LR: 0.000000
+  Best epoch 46 | IoU crop: 0.724 weed: 0.501
+
+Fold 4/5
+Selected model: UNet with pretrained ResNet18 encoder
+  Epoch 01 | Train Loss: 1.1083 | Val Loss: 1.1535 | IoU bg: 0.000 crop: 0.008 weed: 0.001 | LR: 0.000100
+  Epoch 02 | Train Loss: 0.9115 | Val Loss: 1.1372 | IoU bg: 0.007 crop: 0.008 weed: 0.025 | LR: 0.000100
+  Epoch 03 | Train Loss: 0.7458 | Val Loss: 1.0106 | IoU bg: 0.858 crop: 0.019 weed: 0.354 | LR: 0.000099
+  Epoch 04 | Train Loss: 0.6375 | Val Loss: 0.8114 | IoU bg: 0.957 crop: 0.069 weed: 0.539 | LR: 0.000098
+  Epoch 05 | Train Loss: 0.5666 | Val Loss: 0.7942 | IoU bg: 0.942 crop: 0.101 weed: 0.465 | LR: 0.000098
+  Epoch 06 | Train Loss: 0.5228 | Val Loss: 0.6109 | IoU bg: 0.971 crop: 0.218 weed: 0.589 | LR: 0.000096
+  Epoch 07 | Train Loss: 0.4986 | Val Loss: 0.5256 | IoU bg: 0.973 crop: 0.249 weed: 0.536 | LR: 0.000095
+  Epoch 08 | Train Loss: 0.4731 | Val Loss: 0.4525 | IoU bg: 0.976 crop: 0.283 weed: 0.609 | LR: 0.000094
+  Epoch 09 | Train Loss: 0.4524 | Val Loss: 0.5505 | IoU bg: 0.970 crop: 0.230 weed: 0.433 | LR: 0.000092
+  Epoch 10 | Train Loss: 0.4376 | Val Loss: 0.3850 | IoU bg: 0.979 crop: 0.344 weed: 0.589 | LR: 0.000090
+  Epoch 11 | Train Loss: 0.4206 | Val Loss: 0.4249 | IoU bg: 0.977 crop: 0.352 weed: 0.611 | LR: 0.000089
+  Epoch 12 | Train Loss: 0.4117 | Val Loss: 0.4008 | IoU bg: 0.978 crop: 0.336 weed: 0.631 | LR: 0.000086
+  Epoch 13 | Train Loss: 0.4005 | Val Loss: 0.4488 | IoU bg: 0.976 crop: 0.382 weed: 0.611 | LR: 0.000084
+  Epoch 14 | Train Loss: 0.3893 | Val Loss: 0.3799 | IoU bg: 0.979 crop: 0.460 weed: 0.631 | LR: 0.000082
+  Epoch 15 | Train Loss: 0.3781 | Val Loss: 0.3911 | IoU bg: 0.979 crop: 0.479 weed: 0.647 | LR: 0.000079
+  Epoch 16 | Train Loss: 0.3688 | Val Loss: 0.3724 | IoU bg: 0.980 crop: 0.566 weed: 0.659 | LR: 0.000077
+  Epoch 17 | Train Loss: 0.3611 | Val Loss: 0.3622 | IoU bg: 0.980 crop: 0.586 weed: 0.670 | LR: 0.000074
+  Epoch 18 | Train Loss: 0.3495 | Val Loss: 0.3483 | IoU bg: 0.979 crop: 0.604 weed: 0.665 | LR: 0.000071
+  Epoch 19 | Train Loss: 0.3453 | Val Loss: 0.3332 | IoU bg: 0.980 crop: 0.545 weed: 0.646 | LR: 0.000068
+  Epoch 20 | Train Loss: 0.3353 | Val Loss: 0.3389 | IoU bg: 0.980 crop: 0.652 weed: 0.683 | LR: 0.000065
+  Epoch 21 | Train Loss: 0.3271 | Val Loss: 0.3280 | IoU bg: 0.979 crop: 0.753 weed: 0.697 | LR: 0.000062
+  Epoch 22 | Train Loss: 0.3189 | Val Loss: 0.3592 | IoU bg: 0.977 crop: 0.568 weed: 0.642 | LR: 0.000059
+  Epoch 23 | Train Loss: 0.3108 | Val Loss: 0.3161 | IoU bg: 0.980 crop: 0.648 weed: 0.681 | LR: 0.000056
+  Epoch 24 | Train Loss: 0.3035 | Val Loss: 0.3135 | IoU bg: 0.980 crop: 0.715 weed: 0.697 | LR: 0.000053
+  Epoch 25 | Train Loss: 0.3014 | Val Loss: 0.3088 | IoU bg: 0.981 crop: 0.708 weed: 0.702 | LR: 0.000050
+  Epoch 26 | Train Loss: 0.2927 | Val Loss: 0.3165 | IoU bg: 0.979 crop: 0.687 weed: 0.688 | LR: 0.000047
+  Epoch 27 | Train Loss: 0.2902 | Val Loss: 0.3113 | IoU bg: 0.979 crop: 0.744 weed: 0.703 | LR: 0.000044
+  Epoch 28 | Train Loss: 0.2856 | Val Loss: 0.2975 | IoU bg: 0.980 crop: 0.693 weed: 0.699 | LR: 0.000041
+  Epoch 29 | Train Loss: 0.2805 | Val Loss: 0.3034 | IoU bg: 0.980 crop: 0.699 weed: 0.702 | LR: 0.000038
+  Epoch 30 | Train Loss: 0.2777 | Val Loss: 0.2982 | IoU bg: 0.980 crop: 0.653 weed: 0.691 | LR: 0.000035
+  Epoch 31 | Train Loss: 0.2745 | Val Loss: 0.2954 | IoU bg: 0.980 crop: 0.703 weed: 0.702 | LR: 0.000032
+  Epoch 32 | Train Loss: 0.2714 | Val Loss: 0.3036 | IoU bg: 0.979 crop: 0.723 weed: 0.696 | LR: 0.000029
+  Epoch 33 | Train Loss: 0.2701 | Val Loss: 0.2915 | IoU bg: 0.980 crop: 0.734 weed: 0.710 | LR: 0.000026
+  Epoch 34 | Train Loss: 0.2668 | Val Loss: 0.2843 | IoU bg: 0.981 crop: 0.753 weed: 0.717 | LR: 0.000023
+  Epoch 35 | Train Loss: 0.2649 | Val Loss: 0.2988 | IoU bg: 0.979 crop: 0.760 weed: 0.707 | LR: 0.000021
+  Epoch 36 | Train Loss: 0.2629 | Val Loss: 0.2858 | IoU bg: 0.981 crop: 0.767 weed: 0.719 | LR: 0.000018
+  Epoch 37 | Train Loss: 0.2617 | Val Loss: 0.2871 | IoU bg: 0.980 crop: 0.765 weed: 0.714 | LR: 0.000016
+  Epoch 38 | Train Loss: 0.2582 | Val Loss: 0.2820 | IoU bg: 0.981 crop: 0.748 weed: 0.715 | LR: 0.000014
+  Epoch 39 | Train Loss: 0.2577 | Val Loss: 0.2839 | IoU bg: 0.981 crop: 0.735 weed: 0.714 | LR: 0.000012
+  Epoch 40 | Train Loss: 0.2573 | Val Loss: 0.2874 | IoU bg: 0.980 crop: 0.718 weed: 0.707 | LR: 0.000010
+  Epoch 41 | Train Loss: 0.2573 | Val Loss: 0.2853 | IoU bg: 0.980 crop: 0.737 weed: 0.711 | LR: 0.000008
+  Epoch 42 | Train Loss: 0.2547 | Val Loss: 0.2826 | IoU bg: 0.981 crop: 0.763 weed: 0.718 | LR: 0.000006
+  Epoch 43 | Train Loss: 0.2540 | Val Loss: 0.2806 | IoU bg: 0.981 crop: 0.761 weed: 0.719 | LR: 0.000005
+  Epoch 44 | Train Loss: 0.2550 | Val Loss: 0.2830 | IoU bg: 0.980 crop: 0.761 weed: 0.716 | LR: 0.000004
+  Epoch 45 | Train Loss: 0.2541 | Val Loss: 0.2831 | IoU bg: 0.980 crop: 0.743 weed: 0.714 | LR: 0.000003
+  Epoch 46 | Train Loss: 0.2541 | Val Loss: 0.2821 | IoU bg: 0.981 crop: 0.747 weed: 0.715 | LR: 0.000002
+  Epoch 47 | Train Loss: 0.2547 | Val Loss: 0.2848 | IoU bg: 0.980 crop: 0.749 weed: 0.713 | LR: 0.000001
+  Epoch 48 | Train Loss: 0.2542 | Val Loss: 0.2839 | IoU bg: 0.980 crop: 0.744 weed: 0.712 | LR: 0.000000
+  Epoch 49 | Train Loss: 0.2518 | Val Loss: 0.2788 | IoU bg: 0.981 crop: 0.759 weed: 0.718 | LR: 0.000000
+  Epoch 50 | Train Loss: 0.2532 | Val Loss: 0.2790 | IoU bg: 0.981 crop: 0.756 weed: 0.717 | LR: 0.000000
+  Best epoch 49 | IoU crop: 0.759 weed: 0.718
+
+Fold 5/5
+Selected model: UNet with pretrained ResNet18 encoder
+  Epoch 01 | Train Loss: 1.1484 | Val Loss: 1.1805 | IoU bg: 0.000 crop: 0.000 weed: 0.065 | LR: 0.000100
+  Epoch 02 | Train Loss: 0.9898 | Val Loss: 1.1827 | IoU bg: 0.000 crop: 0.000 weed: 0.065 | LR: 0.000100
+  Epoch 03 | Train Loss: 0.8145 | Val Loss: 1.0835 | IoU bg: 0.095 crop: 0.000 weed: 0.071 | LR: 0.000099
+  Epoch 04 | Train Loss: 0.6994 | Val Loss: 0.8523 | IoU bg: 0.907 crop: 0.031 weed: 0.390 | LR: 0.000098
+  Epoch 05 | Train Loss: 0.6304 | Val Loss: 0.8345 | IoU bg: 0.944 crop: 0.123 weed: 0.468 | LR: 0.000098
+  Epoch 06 | Train Loss: 0.5834 | Val Loss: 0.8159 | IoU bg: 0.932 crop: 0.065 weed: 0.458 | LR: 0.000096
+  Epoch 07 | Train Loss: 0.5540 | Val Loss: 0.5675 | IoU bg: 0.975 crop: 0.172 weed: 0.638 | LR: 0.000095
+  Epoch 08 | Train Loss: 0.5369 | Val Loss: 0.5520 | IoU bg: 0.975 crop: 0.209 weed: 0.419 | LR: 0.000094
+  Epoch 09 | Train Loss: 0.5170 | Val Loss: 0.5073 | IoU bg: 0.976 crop: 0.192 weed: 0.643 | LR: 0.000092
+  Epoch 10 | Train Loss: 0.4986 | Val Loss: 0.4922 | IoU bg: 0.977 crop: 0.289 weed: 0.650 | LR: 0.000090
+  Epoch 11 | Train Loss: 0.4858 | Val Loss: 0.4655 | IoU bg: 0.979 crop: 0.379 weed: 0.656 | LR: 0.000089
+  Epoch 12 | Train Loss: 0.4707 | Val Loss: 0.4657 | IoU bg: 0.978 crop: 0.440 weed: 0.658 | LR: 0.000086
+  Epoch 13 | Train Loss: 0.4563 | Val Loss: 0.4515 | IoU bg: 0.979 crop: 0.481 weed: 0.656 | LR: 0.000084
+  Epoch 14 | Train Loss: 0.4423 | Val Loss: 0.4642 | IoU bg: 0.974 crop: 0.574 weed: 0.660 | LR: 0.000082
+  Epoch 15 | Train Loss: 0.4302 | Val Loss: 0.4306 | IoU bg: 0.978 crop: 0.561 weed: 0.706 | LR: 0.000079
+  Epoch 16 | Train Loss: 0.4178 | Val Loss: 0.4276 | IoU bg: 0.978 crop: 0.579 weed: 0.700 | LR: 0.000077
+  Epoch 17 | Train Loss: 0.4073 | Val Loss: 0.4092 | IoU bg: 0.976 crop: 0.604 weed: 0.695 | LR: 0.000074
+  Epoch 18 | Train Loss: 0.3959 | Val Loss: 0.3967 | IoU bg: 0.980 crop: 0.596 weed: 0.714 | LR: 0.000071
+  Epoch 19 | Train Loss: 0.3876 | Val Loss: 0.3971 | IoU bg: 0.976 crop: 0.600 weed: 0.690 | LR: 0.000068
+  Epoch 20 | Train Loss: 0.3799 | Val Loss: 0.3834 | IoU bg: 0.979 crop: 0.597 weed: 0.709 | LR: 0.000065
+  Epoch 21 | Train Loss: 0.3705 | Val Loss: 0.3728 | IoU bg: 0.978 crop: 0.649 weed: 0.714 | LR: 0.000062
+  Epoch 22 | Train Loss: 0.3614 | Val Loss: 0.3749 | IoU bg: 0.979 crop: 0.630 weed: 0.716 | LR: 0.000059
+  Epoch 23 | Train Loss: 0.3556 | Val Loss: 0.3648 | IoU bg: 0.978 crop: 0.649 weed: 0.715 | LR: 0.000056
+  Epoch 24 | Train Loss: 0.3490 | Val Loss: 0.3570 | IoU bg: 0.982 crop: 0.615 weed: 0.725 | LR: 0.000053
+  Epoch 25 | Train Loss: 0.3409 | Val Loss: 0.3633 | IoU bg: 0.978 crop: 0.609 weed: 0.704 | LR: 0.000050
+  Epoch 26 | Train Loss: 0.3363 | Val Loss: 0.3553 | IoU bg: 0.978 crop: 0.631 weed: 0.706 | LR: 0.000047
+  Epoch 27 | Train Loss: 0.3312 | Val Loss: 0.3431 | IoU bg: 0.979 crop: 0.661 weed: 0.725 | LR: 0.000044
+  Epoch 28 | Train Loss: 0.3265 | Val Loss: 0.3344 | IoU bg: 0.981 crop: 0.632 weed: 0.723 | LR: 0.000041
+  Epoch 29 | Train Loss: 0.3209 | Val Loss: 0.3343 | IoU bg: 0.979 crop: 0.684 weed: 0.730 | LR: 0.000038
+  Epoch 30 | Train Loss: 0.3185 | Val Loss: 0.3409 | IoU bg: 0.977 crop: 0.661 weed: 0.715 | LR: 0.000035
+  Epoch 31 | Train Loss: 0.3133 | Val Loss: 0.3352 | IoU bg: 0.979 crop: 0.631 weed: 0.721 | LR: 0.000032
+  Epoch 32 | Train Loss: 0.3126 | Val Loss: 0.3311 | IoU bg: 0.979 crop: 0.642 weed: 0.711 | LR: 0.000029
+  Epoch 33 | Train Loss: 0.3095 | Val Loss: 0.3243 | IoU bg: 0.980 crop: 0.642 weed: 0.726 | LR: 0.000026
+  Epoch 34 | Train Loss: 0.3052 | Val Loss: 0.3213 | IoU bg: 0.980 crop: 0.667 weed: 0.728 | LR: 0.000023
+  Epoch 35 | Train Loss: 0.3026 | Val Loss: 0.3186 | IoU bg: 0.980 crop: 0.667 weed: 0.731 | LR: 0.000021
+  Epoch 36 | Train Loss: 0.3006 | Val Loss: 0.3218 | IoU bg: 0.980 crop: 0.641 weed: 0.721 | LR: 0.000018
+  Epoch 37 | Train Loss: 0.3004 | Val Loss: 0.3214 | IoU bg: 0.979 crop: 0.664 weed: 0.721 | LR: 0.000016
+  Epoch 38 | Train Loss: 0.2975 | Val Loss: 0.3168 | IoU bg: 0.980 crop: 0.651 weed: 0.726 | LR: 0.000014
+  Epoch 39 | Train Loss: 0.2968 | Val Loss: 0.3150 | IoU bg: 0.980 crop: 0.664 weed: 0.733 | LR: 0.000012
+  Epoch 40 | Train Loss: 0.2981 | Val Loss: 0.3195 | IoU bg: 0.978 crop: 0.661 weed: 0.718 | LR: 0.000010
+  Epoch 41 | Train Loss: 0.2950 | Val Loss: 0.3133 | IoU bg: 0.980 crop: 0.661 weed: 0.726 | LR: 0.000008
+  Epoch 42 | Train Loss: 0.2926 | Val Loss: 0.3154 | IoU bg: 0.980 crop: 0.654 weed: 0.724 | LR: 0.000006
+  Epoch 43 | Train Loss: 0.2918 | Val Loss: 0.3147 | IoU bg: 0.980 crop: 0.645 weed: 0.722 | LR: 0.000005
+  Epoch 44 | Train Loss: 0.2919 | Val Loss: 0.3118 | IoU bg: 0.980 crop: 0.643 weed: 0.725 | LR: 0.000004
+  Epoch 45 | Train Loss: 0.2919 | Val Loss: 0.3121 | IoU bg: 0.980 crop: 0.648 weed: 0.726 | LR: 0.000003
+  Epoch 46 | Train Loss: 0.2913 | Val Loss: 0.3120 | IoU bg: 0.980 crop: 0.649 weed: 0.726 | LR: 0.000002
+  Epoch 47 | Train Loss: 0.2914 | Val Loss: 0.3114 | IoU bg: 0.980 crop: 0.652 weed: 0.727 | LR: 0.000001
+  Epoch 48 | Train Loss: 0.2910 | Val Loss: 0.3134 | IoU bg: 0.980 crop: 0.655 weed: 0.726 | LR: 0.000000
+  Epoch 49 | Train Loss: 0.2907 | Val Loss: 0.3114 | IoU bg: 0.980 crop: 0.657 weed: 0.727 | LR: 0.000000
+  Epoch 50 | Train Loss: 0.2894 | Val Loss: 0.3113 | IoU bg: 0.980 crop: 0.667 weed: 0.731 | LR: 0.000000
+  Best epoch 50 | IoU crop: 0.667 weed: 0.731
+
+K-Fold Results:
+IoU      | bg: 0.986 crop: 0.723 weed: 0.645
+Accuracy | bg: 0.992 crop: 0.834 weed: 0.791
+BFScore  | bg: 0.792 crop: 0.711 weed: 0.558
