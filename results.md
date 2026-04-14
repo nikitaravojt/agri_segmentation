@@ -1,4 +1,12 @@
 
+## Result_8 14/06/26. Running all this at full image res.
+K-Fold Results:
+IoU      | bg: 0.990 crop: 0.808 weed: 0.715
+Accuracy | bg: 0.996 crop: 0.901 weed: 0.787
+BFScore  | bg: 0.807 crop: 0.750 weed: 0.674
+- Best result yet, though BFScore suffers (though tolerance is still =2 when resolution increased two-fold). 
+- Should re-run with tolerance=4, or actually can just do this at inference since fold1 (best) .pth file will be saved to git.
+
 ## Result_7 14/04/26. Pretrained Unet (ResNet18 weights) + k=5 + cosineLR (init 1e-4, etamin 1e-7) + aug for 50 epochs
 K-Fold Results:
 IoU      | bg: 0.986 crop: 0.723 weed: 0.645

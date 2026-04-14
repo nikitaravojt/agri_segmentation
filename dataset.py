@@ -58,8 +58,8 @@ class CropWeedDataset(Dataset):
         image = Image.open(os.path.join(self.image_dir, self.images[idx])).convert("RGB")
         label = Image.open(os.path.join(self.label_dir, self.labels[idx])).convert("RGB")
         
-        image = image.resize((640, 480), Image.BILINEAR)
-        label = label.resize((640, 480), Image.NEAREST)
+        image = image.resize((1280, 960), Image.BILINEAR)
+        label = label.resize((1280, 960), Image.NEAREST)
 
         if self.augment:
             image, label = self.apply_augmentation(image, label)
